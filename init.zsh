@@ -72,7 +72,7 @@ p6df::modules::copilot::external::brews() {
 ######################################################################
 p6df::modules::copilot::home::symlink() {
 
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-copilot/share/copilot" .copilot
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-copilot/share/copilot" "$HOME/.copilot"
 
   p6_return_void
 }

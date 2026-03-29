@@ -2,11 +2,11 @@
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::deps()
+# Function: p6df::modules::ghcopilot::deps()
 #
 #>
 ######################################################################
-p6df::modules::copilot::deps() {
+p6df::modules::ghcopilot::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
   )
@@ -15,11 +15,11 @@ p6df::modules::copilot::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::vscodes()
+# Function: p6df::modules::ghcopilot::vscodes()
 #
 #>
 ######################################################################
-p6df::modules::copilot::vscodes() {
+p6df::modules::ghcopilot::vscodes() {
 
   p6df::modules::vscode::extension::install github.copilot
   p6df::modules::vscode::extension::install github.copilot-chat
@@ -30,11 +30,11 @@ p6df::modules::copilot::vscodes() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::vscodes::config()
+# Function: p6df::modules::ghcopilot::vscodes::config()
 #
 #>
 ######################################################################
-p6df::modules::copilot::vscodes::config() {
+p6df::modules::ghcopilot::vscodes::config() {
 
   cat <<'EOF'
   "github.copilot.enable": {
@@ -51,11 +51,11 @@ EOF
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::external::brews()
+# Function: p6df::modules::ghcopilot::external::brews()
 #
 #>
 ######################################################################
-p6df::modules::copilot::external::brews() {
+p6df::modules::ghcopilot::external::brews() {
 
   p6df::core::homebrew::cli::brew::install copilot-cli
 
@@ -65,14 +65,14 @@ p6df::modules::copilot::external::brews() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::home::symlink()
+# Function: p6df::modules::ghcopilot::home::symlink()
 #
 #  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
-p6df::modules::copilot::home::symlink() {
+p6df::modules::ghcopilot::home::symlink() {
 
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-copilot/share/copilot" "$HOME/.copilot"
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-ghcopilot/share/copilot" "$HOME/.copilot"
 
   p6_return_void
 }
@@ -80,11 +80,11 @@ p6df::modules::copilot::home::symlink() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::aliases::init()
+# Function: p6df::modules::ghcopilot::aliases::init()
 #
 #>
 ######################################################################
-p6df::modules::copilot::aliases::init() {
+p6df::modules::ghcopilot::aliases::init() {
 
   # core copilot CLI commands
   p6_alias ghcs "gh copilot suggest"
@@ -102,20 +102,20 @@ p6df::modules::copilot::aliases::init() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::copilot::prompt::mod()
+# Function: str str = p6df::modules::ghcopilot::prompt::mod()
 #
 #  Returns:
 #	str - str
 #
-#  Environment:	 GH_USER P6_DFZ_PROFILE_COPILOT
+#  Environment:	 GH_USER P6_DFZ_PROFILE_GHCOPILOT
 #>
 ######################################################################
-p6df::modules::copilot::prompt::mod() {
+p6df::modules::ghcopilot::prompt::mod() {
 
   local str
-  if p6_string_blank_NOT "$P6_DFZ_PROFILE_COPILOT"; then
+  if p6_string_blank_NOT "$P6_DFZ_PROFILE_GHCOPILOT"; then
     if p6_string_blank_NOT "$GH_USER"; then
-      str="copilot:\t  $P6_DFZ_PROFILE_COPILOT: $GH_USER"
+      str="copilot:\t  $P6_DFZ_PROFILE_GHCOPILOT: $GH_USER"
     fi
   fi
 
@@ -125,22 +125,22 @@ p6df::modules::copilot::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::profile::on(profile, code)
+# Function: p6df::modules::ghcopilot::profile::on(profile, code)
 #
 #  Args:
 #	profile -
 #	code - shell code block (export GITHUB_COPILOT_TOKEN=...)
 #
-#  Environment:	 P6_DFZ_PROFILE_COPILOT
+#  Environment:	 P6_DFZ_PROFILE_GHCOPILOT
 #>
 ######################################################################
-p6df::modules::copilot::profile::on() {
+p6df::modules::ghcopilot::profile::on() {
   local profile="$1"
   local code="$2"
 
   p6_run_code "$code"
 
-  p6_env_export "P6_DFZ_PROFILE_COPILOT" "$profile"
+  p6_env_export "P6_DFZ_PROFILE_GHCOPILOT" "$profile"
 
   p6_return_void
 }
@@ -148,19 +148,19 @@ p6df::modules::copilot::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::profile::off(code)
+# Function: p6df::modules::ghcopilot::profile::off(code)
 #
 #  Args:
 #	code - shell code block previously passed to profile::on
 #
-#  Environment:	 P6_DFZ_PROFILE_COPILOT
+#  Environment:	 P6_DFZ_PROFILE_GHCOPILOT
 #>
 ######################################################################
-p6df::modules::copilot::profile::off() {
+p6df::modules::ghcopilot::profile::off() {
   local code="$1"
 
   p6_env_unset_from_code "$code"
-  p6_env_export_un P6_DFZ_PROFILE_COPILOT
+  p6_env_export_un P6_DFZ_PROFILE_GHCOPILOT
 
   p6_return_void
 }

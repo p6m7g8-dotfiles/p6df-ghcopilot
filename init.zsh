@@ -125,16 +125,20 @@ p6df::modules::copilot::prompt::mod() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::profile::on(profile)
+# Function: p6df::modules::copilot::profile::on(profile, code)
 #
 #  Args:
 #	profile -
+#	code - shell code block (export GITHUB_COPILOT_TOKEN=...)
 #
 #  Environment:	 P6_DFZ_PROFILE_COPILOT
 #>
 ######################################################################
 p6df::modules::copilot::profile::on() {
   local profile="$1"
+  local code="$2"
+
+  p6_run_code "$code"
 
   p6_env_export "P6_DFZ_PROFILE_COPILOT" "$profile"
 
@@ -144,13 +148,18 @@ p6df::modules::copilot::profile::on() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::copilot::profile::off()
+# Function: p6df::modules::copilot::profile::off(code)
+#
+#  Args:
+#	code - shell code block previously passed to profile::on
 #
 #  Environment:	 P6_DFZ_PROFILE_COPILOT
 #>
 ######################################################################
 p6df::modules::copilot::profile::off() {
+  local code="$1"
 
+  p6_env_unset_from_code "$code"
   p6_env_export_un P6_DFZ_PROFILE_COPILOT
 
   p6_return_void

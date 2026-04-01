@@ -114,6 +114,6 @@ p6df::modules::ghcopilot::aliases::init() {
 ######################################################################
 p6df::modules::ghcopilot::profile::mod() {
 
-  p6_return_words 'ghcopilot' '$GH_COPILOT_VERSION'
+  p6_return_words 'ghcopilot' "$"
 }
 

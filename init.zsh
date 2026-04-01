@@ -67,7 +67,7 @@ p6df::modules::ghcopilot::external::brews() {
 #
 # Function: p6df::modules::ghcopilot::home::symlink()
 #
-#  Environment:	 P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#  Environment:	 HOME P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::ghcopilot::home::symlink() {
@@ -86,6 +86,8 @@ p6df::modules::ghcopilot::home::symlink() {
 ######################################################################
 p6df::modules::ghcopilot::aliases::init() {
 
+  local _module="$1"
+  local _dir="$2"
   # core copilot CLI commands
   p6_alias ghcs "gh copilot suggest"
   p6_alias ghce "gh copilot explain"
@@ -102,65 +104,16 @@ p6df::modules::ghcopilot::aliases::init() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::ghcopilot::prompt::mod()
+# Function: words ghcopilot $GH_COPILOT_VERSION = p6df::modules::ghcopilot::profile::mod()
 #
 #  Returns:
-#	str - str
+#	words - ghcopilot $GH_COPILOT_VERSION
 #
-#  Environment:	 GH_USER P6_DFZ_PROFILE_GHCOPILOT
+#  Environment:	 GH_COPILOT_VERSION
 #>
 ######################################################################
-p6df::modules::ghcopilot::prompt::mod() {
+p6df::modules::ghcopilot::profile::mod() {
 
-  local str
-  if p6_string_blank_NOT "$P6_DFZ_PROFILE_GHCOPILOT"; then
-    if p6_string_blank_NOT "$GH_USER"; then
-      str="copilot:\t  $P6_DFZ_PROFILE_GHCOPILOT: $GH_USER"
-    fi
-  fi
-
-  p6_return_str "$str"
+  p6_return_words 'ghcopilot' '$GH_COPILOT_VERSION'
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::ghcopilot::profile::on(profile, code)
-#
-#  Args:
-#	profile -
-#	code - shell code block (export GITHUB_COPILOT_TOKEN=...)
-#
-#  Environment:	 P6_DFZ_PROFILE_GHCOPILOT
-#>
-######################################################################
-p6df::modules::ghcopilot::profile::on() {
-  local profile="$1"
-  local code="$2"
-
-  p6_run_code "$code"
-
-  p6_env_export "P6_DFZ_PROFILE_GHCOPILOT" "$profile"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::ghcopilot::profile::off(code)
-#
-#  Args:
-#	code - shell code block previously passed to profile::on
-#
-#  Environment:	 P6_DFZ_PROFILE_GHCOPILOT
-#>
-######################################################################
-p6df::modules::ghcopilot::profile::off() {
-  local code="$1"
-
-  p6_env_unset_from_code "$code"
-  p6_env_export_un P6_DFZ_PROFILE_GHCOPILOT
-
-  p6_return_void
-}

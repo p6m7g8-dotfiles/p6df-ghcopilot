@@ -114,6 +114,6 @@ p6df::modules::ghcopilot::aliases::init() {
 ######################################################################
 p6df::modules::ghcopilot::profile::mod() {
 
-  p6_return_words 'ghcopilot' "$"
+  p6_return_words 'ghcopilot' '$COPILOT_GITHUB_TOKEN'
 }
 

@@ -1,4 +1,4 @@
-# P6's POSIX.2: p6df-copilot
+# P6's POSIX.2: p6df-ghcopilot
 
 ## Table of Contents
 
@@ -31,21 +31,20 @@ TODO: Add a short summary of this module.
 
 ### Functions
 
-#### p6df-copilot
+#### p6df-ghcopilot
 
-##### p6df-copilot/init.zsh
+##### p6df-ghcopilot/init.zsh
 
-- `p6df::modules::copilot::aliases::init()`
-- `p6df::modules::copilot::deps()`
-- `p6df::modules::copilot::external::brews()`
-- `p6df::modules::copilot::home::symlink()`
-- `p6df::modules::copilot::profile::off()`
-- `p6df::modules::copilot::profile::on(profile)`
+- `p6df::modules::ghcopilot::aliases::init(_module, _dir)`
   - Args:
-    - profile -
-- `p6df::modules::copilot::vscodes()`
-- `p6df::modules::copilot::vscodes::config()`
-- `str str = p6df::modules::copilot::prompt::mod()`
+    - _module
+    - _dir
+- `p6df::modules::ghcopilot::deps()`
+- `p6df::modules::ghcopilot::external::brews()`
+- `p6df::modules::ghcopilot::home::symlinks()`
+- `p6df::modules::ghcopilot::vscodes()`
+- `p6df::modules::ghcopilot::vscodes::config()`
+- `words ghcopilot = p6df::modules::ghcopilot::profile::mod()`
 
 ## Hierarchy
 

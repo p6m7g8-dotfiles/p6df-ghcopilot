@@ -15,7 +15,11 @@ p6df::modules::ghcopilot::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::ghcopilot::aliases::init()
+# Function: p6df::modules::ghcopilot::aliases::init(_module, _dir)
+#
+#  Args:
+#	_module -
+#	_dir -
 #
 #>
 ######################################################################
@@ -104,12 +108,12 @@ EOF
 ######################################################################
 #<
 #
-# Function: words ghcopilot $GH_COPILOT_VERSION = p6df::modules::ghcopilot::profile::mod()
+# Function: words ghcopilot = p6df::modules::ghcopilot::profile::mod()
 #
 #  Returns:
-#	words - ghcopilot $GH_COPILOT_VERSION
+#	words - ghcopilot
 #
-#  Environment:	 GH_COPILOT_VERSION
+#  Environment:	 COPILOT_GITHUB_TOKEN
 #>
 ######################################################################
 p6df::modules::ghcopilot::profile::mod() {
